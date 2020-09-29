@@ -1,0 +1,303 @@
+@import '@netgen/javascript-cookie-control/scss/style';
+
+
+##{$ngCcId} {
+  .ng-cc-optional-list {
+    &>li {
+      width: 25%;
+      float: left;
+      padding: 1.5em;
+    }
+
+    .ng-cc-optional-checkbox {
+      opacity: 0;
+      left: -9999em;
+
+      +label {
+        padding: 0 0 0 3.25em;
+        font-size: 16px;
+
+        .ng-cc-checkbox-icon {
+          position: absolute;
+          left: 0;
+          top: .25em;
+          border-radius: 500em;
+          width: 2.6em;
+          height: 1em;
+          background: #fff;
+          border: 2px solid #fff;
+
+          &::before {
+            content: '';
+            position: absolute;
+            height: 100%;
+            width: 50%;
+            left: 0;
+            top: 0;
+            border-radius: 500em;
+            background: hsl(200, 0, 50);
+            transition: all .3s;
+            z-index: 2;
+          }
+
+          span {
+            font-size: .5em;
+            font-weight: 900;
+            font-style: normal;
+            text-transform: uppercase;
+            color: #333;
+            display: flex;
+            align-items: center;
+            position: absolute;
+            left: 0;
+            top: 0;
+            right: 0;
+            bottom: 0;
+
+            &::before,
+            &::after {
+              flex: 1;
+              text-align: center;
+            }
+
+            &::before {
+              content: 'On';
+            }
+
+            &::after {
+              content: 'Off';
+              opacity: .6;
+            }
+          }
+        }
+      }
+
+      &:checked {
+        +label {
+          .ng-cc-checkbox-icon {
+            &::before {
+              left: 50%;
+              background: hsl(200, 95, 30);
+            }
+          }
+        }
+      }
+
+      &:disabled {
+        +label {
+          cursor: default;
+
+          .ng-cc-checkbox-icon {
+            opacity: .2;
+          }
+        }
+      }
+    }
+  }
+}
+
+
+#ng-cc {
+  position: relative;
+  z-index: 10000;
+  line-height: 1.5;
+  font-size: 14px;
+  &[open] {
+    .ng-cc-modal {
+        transform: translate3d(0, 0, 0);
+    }
+    .ng-cc-overlay {
+        opacity: 1;
+        transform: translate3d(0, 0, 0);
+    }
+}
+
+  .ng-cc-modal {
+    position: fixed;
+    z-index: 1000;
+    width: 100%;
+    height: auto;
+    top: auto;
+    transform: translate3d(0, 125%, 0);
+    bottom: 15px;
+    padding: 0;
+    color: $blue;
+    background: none;
+    .ng-cc-content {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1em 3em 1em 2em;
+      background-color: $gray-light;
+      .wrapper {
+        padding-right: 10%;
+
+        p {
+          margin-bottom: 0;
+          line-height: 1.5;
+          padding: 0.5rem 0;
+        }
+
+        a {
+          color: inherit;
+        }
+      }
+
+      .ng-cc-actions {
+        margin-top: 0;
+        display: flex;
+
+        .btn {
+          background-color: $blue;
+          border-color: $blue;
+          white-space: nowrap;
+          border-radius: 2px;
+          font-weight: 400;
+          font-size: 1em;
+        }
+        #ng-cc-accept {
+            font-size: 50px;
+            transform: rotate(45deg);
+            line-height: 0.6;
+            position: relative;
+            top: -2px;
+        }
+        .optional-list-toggle {
+          margin-right: 2rem;
+          color: inherit;
+          text-decoration: underline;
+          display: flex;
+          align-items: center;
+          padding-left: 1em;
+          position: relative;
+          white-space: nowrap;
+          border-right: 2px solid $blue-ultra-light;
+          padding-right: 2rem;
+
+          &::before {
+            content: "";
+            width: 0.5em;
+            height: 0.5em;
+            border-style: solid;
+            border-color: #fff;
+            border-width: 0 1px 1px 0;
+            display: block;
+            position: absolute;
+            left: 0;
+            top: none;
+            transform-origin: center;
+            transform: rotate(-45deg);
+            transition: .2s ease all;
+          }
+          
+
+          &.rotate-arrow {
+            &::before {
+              transform: rotate(45deg);
+              top: none;
+            }
+          }
+        }
+      }
+    }
+
+    .ng-cc-close-btn {
+      top: 7px;
+      right: 0;
+      width: 1em;
+      height: 1em;
+      font-size: 15px;
+
+      &::before,
+      &::after {
+        content: "";
+        width: 1px;
+        height: 1em;
+        display: block;
+        background-color: #fff;
+        position: absolute;
+        left: 0;
+        top: 0;
+        transform-origin: center center;
+      }
+
+      &::before {
+        transform: rotate(45deg);
+      }
+
+      &::after {
+        transform: rotate(-45deg);
+      }
+    }
+  }
+
+  .ng-cc-overlay {
+    display: none;
+  }
+
+  .ng-cc-optional-list {
+    display: none;
+    margin: 0;
+    background-color: $gray-light;
+  }
+
+  @include media-breakpoint-down(lg) {
+    font-size: 15px;
+
+    .ng-cc-modal {
+      .ng-cc-content {
+        padding: 0.75em 2em 0.75em 1em;
+      }
+    }
+
+    .ng-cc-optional-list {
+      >li {
+        width: 100%;
+        padding: 0.75em 1em;
+      }
+    }
+  }
+
+  @include media-breakpoint-down(xs) {
+    font-size: 14px;
+
+    .ng-cc-modal {
+      .ng-cc-content {
+        padding: 0.75em 1em 1em 1em;
+        flex-direction: column;
+
+        .wrapper {
+          padding-right: 0;
+
+          p:before {
+            content: "";
+            float: right;
+            width: 30px;
+            height: 20px;
+          }
+        }
+
+        .ng-cc-actions {
+          width: 100%;
+          justify-content: space-between;
+          margin-top: 1em;
+          .optional-list-toggle {
+              padding-left: 0;
+              border-right: 0;
+          }
+        }
+      }
+    }
+
+    .ng-cc-optional-list {
+      >li {
+        padding: 0.25em 1em;
+        border-top: 0;
+
+        p {
+          display: none;
+        }
+      }
+    }
+  }
+}

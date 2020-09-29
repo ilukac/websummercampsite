@@ -1,0 +1,7 @@
+@import 'site_logo';
+@import 'header';
+@import 'navigation';
+@import 'footer';
+
+#page { overflow: hidden; } //fix for weird overflow bug
+.view-type img { width: 100%; } //resolved hassle with non responsive images

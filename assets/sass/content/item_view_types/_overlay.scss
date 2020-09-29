@@ -1,0 +1,83 @@
+/* overlay item view type */
+.vl2 {
+    margin: 0 0 2rem;
+    position: relative;
+    a {
+        color: inherit;
+        &:hover {
+            color: inherit;
+        }
+    }
+    .wrapper {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        > .container {position: relative; }
+    }
+    .info {
+        background-color: #fff;
+        position: absolute;
+        top: 0;
+        width: 35%;
+        min-width: 240px;
+        .title {
+            font-size: 38px;
+            margin: 0 0 .5em;
+            line-height: 1.15;
+        }
+        .short {
+            margin-bottom: .5em;
+        }
+        .cta {
+            font-size: 14px;
+            text-decoration: underline;
+            text-transform: uppercase;
+            font-weight: bold;
+            a {
+                text-transform: underline;
+            }
+        }
+    }
+    @include media-breakpoint-down(sm) {
+        .wrapper {
+            position: static;
+        }
+        .info {
+            position: static;
+            width: 100%;
+        }
+        .image {
+            margin-bottom: 2rem;
+        }
+    }
+}
+@include media-breakpoint-up(md) {
+    .list-item {
+        &:nth-child(odd) {
+            .vl2 {
+                margin-bottom: 8rem;
+                .image {
+                    margin-left: 15%;
+                }
+                .info {
+                    left: 0;
+                    padding: 1rem 4rem 3rem 0;
+                }
+            }
+            
+        }
+        &:nth-child(even) {
+            .vl2 {
+                .image {
+                    margin-right: 15%;
+                }
+                .info {
+                    right: 0;
+                    padding: 1rem 0 3rem 4rem;
+                }
+            }
+        }
+    }
+}
+

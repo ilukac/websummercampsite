@@ -1,0 +1,51 @@
+{% import 'parts/content_fields.html.twig' as content_fields %}
+
+{% set site_name = wscsite.siteInfo.getsiteName() %}
+{% set site_title = wscsite.siteInfo.getsiteName() %}
+{% set site_desc = wscsite.siteInfo.getsiteDescription() %}
+{% set site_keywords = wscsite.siteInfo.getsiteKeywords() %}
+{% set site_image = wscsite.siteInfo.getimage() %}
+{% set default_meta_data = { keywords: site_keywords, description: site_desc, author: 'Netgen' } %}
+
+{% set meta_data = default_meta_data %}
+{% if content is defined %}
+    {% for key in default_meta_data|keys %}
+        {% if content.getmetaKeywords() is not null %}
+            {% set meta_data = meta_data|merge({('keywords'): content.getmetaKeywords()}) %}
+        {% endif %}
+        {% set meta_data = meta_data|merge({'description': "Web Summer Camp - " ~ content_fields.teaserIntro(content)|striptags|trim|slice(0, 150)}) %}
+    {% endfor %}
+    {% set site_title = content.gettitle() ~ ' - ' ~ site_name|default('') %}
+    {% if content.getimage() is not null %}
+        {% set site_image = content.getimage() %}
+    {% endif %}
+{% endif %}
+
+{% for key in default_meta_data|keys %}
+{% if meta_data[key]|default('') is not empty %}
+    <meta name="{{ key }}" content="{{ meta_data[key] }}" />
+{% endif %}
+{% endfor %}
+
+    <title>{{ site_title }}</title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=2">
+    <meta name="generator" content="Netgen Layouts">
+
+    <meta property="og:url" content="https://2021.websummercamp.com" />
+    <meta property="og:title" content="{{ site_title }}" />
+    <meta property="og:site_name" content="{{ site_name }}" />
+    <meta property="og:country-name" content="Croatia" />
+    <meta property="og:locality" content="Bol" />
+    <meta property="og:latitude" content="43.2616875" />
+    <meta property="og:longitude" content="16.6376557" />
+    <meta property="og:image" content="{{ content_fields.url(site_image)|trim ~ '?w=1200'  }}" />
+    <meta property="og:type" content="website" />
+    <meta property="og:description" content="{{ site_desc }}" />
+
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="{{ site_title }}" />
+    <meta name="twitter:description" content="{{ site_desc }}" />
+    <meta name="twitter:image" content="{{ content_fields.url(site_image)|trim ~ '?w=1200' }}" />
+
+{% include 'link.html.twig' %}

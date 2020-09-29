@@ -1,0 +1,75 @@
+{% extends '@nglayouts/block/block.html.twig' %}
+
+{% import 'parts/content_fields.html.twig' as content_fields %}
+
+{% block content %}
+    {% if collections.default is defined %}
+        {% set gallery = collections.default.0.item.object %}
+
+        <div class="collage clearfix">
+
+            <div class="collage-half">
+                <div class="box box-half-w">
+                    <div class="quote bg-blue">
+                        {{ rich_text_render_collection(gallery.getquote1().content) }}
+                    </div>
+                </div>
+                <div class="box box-half-w">
+                    <div class="att-image">
+                        {{ content_fields.picture(content_fields.url(gallery.getimages().0), "1140", "1140", "Small photo", "small-photo-five collage-photo") }}
+                    </div>
+                </div>
+                <div class="box">
+                    <div class="att-image">
+                        {{ content_fields.picture(content_fields.url(gallery.getimages().1), "1140", "1140", "Big photo", "big-photo collage-photo") }}
+                    </div>
+                </div>
+                <div class="box box-half-w">
+                    <div class="att-image">
+                        {{ content_fields.picture(content_fields.url(gallery.getimages().2), "1140", "1140", "Small photo", "small-photo-two collage-photo") }}
+                    </div>
+                </div>
+                <div class="box box-half-w">
+                    <div class="quote bg-green">
+                        {{ rich_text_render_collection(gallery.getquote2().content) }}
+                    </div>
+                </div>
+            </div>
+
+            <div class="collage-half">
+                <div class="box box-half-h">
+                    <div class="att-image">
+                        {{ content_fields.picture(content_fields.url(gallery.getimages().3), "1140", "570", "Horizontal photo", "horizontal-photo collage-photo") }}
+                    </div>
+                </div>
+                <div class="box box-half-w">
+                    <div class="quote bg-orange">
+                        {{ rich_text_render_collection(gallery.getquote3().content) }}
+                    </div>
+                </div>
+                <div class="box box-half-w">
+                    <div class="att-image">
+                        {{ content_fields.picture(content_fields.url(gallery.getimages().4), "1140", "1140", "Small photo", "small-photo-three collage-photo") }}
+                    </div>
+                </div>
+                <div class="box box-half-w box-double-h">
+                    <div class="att-image">
+                        {{ content_fields.picture(content_fields.url(gallery.getimages().5), "1140", "2280", "Vertical photo", "vertical-photo collage-photo") }}
+                    </div>
+                </div>
+                <div class="box box-half-w">
+                    <div class="quote bg-yellow">
+                        {{ rich_text_render_collection(gallery.getquote4().content) }}
+
+                    </div>
+                </div>
+                <div class="box box-half-w">
+                    <div class="att-image">
+                        {{ content_fields.picture(content_fields.url(gallery.getimages().6), "1140", "1140", "Small photo", "small-photo-one collage-photo") }}
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    {% endif %}
+{% endblock %}

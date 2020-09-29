@@ -1,0 +1,26 @@
+{% import 'parts/content_fields.html.twig' as content_fields %}
+
+<article class="view-type view-type-{{ view_type }} {{ item.object.getContentType().id }} vl4">
+
+    {{ content_fields.teaserImage(item.object, "240", "160", path('cmf_routing_object', {'_route_object': item.object})) }}
+
+    <div class="article-content">
+        <header class="article-header">
+            <h2 class="title"><a href="{{ path('cmf_routing_object', {'_route_object': item.object})|trim }}">{{ content_fields.teaserTitle(item.object) }}</a></h2>
+        </header>
+
+        <div class="info">
+            {{ content_fields.date(item.object) }}
+        </div>
+
+        <div class="short">
+            {{ content_fields.teaserIntro(item.object) }}
+        </div>
+    </div>
+
+    <div class="cta">
+        <a href="{{ path('cmf_routing_object', {'_route_object': item.object})|trim }}">
+            Read more
+        </a>
+    </div>
+</article>

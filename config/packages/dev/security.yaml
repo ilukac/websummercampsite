@@ -1,0 +1,10 @@
+security:
+
+    # https://symfony.com/doc/current/security.html#b-configuring-how-users-are-loaded
+    providers:
+        in_memory:
+            memory:
+                users:
+                    netgen:
+                        password: "netgen"
+                        roles: ['ROLE_NGLAYOUTS_ADMIN', 'ROLE_NGLAYOUTS_ENTERPRISE_ADMIN']

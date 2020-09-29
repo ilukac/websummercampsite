@@ -1,0 +1,12 @@
+cmf_routing:
+    chain:
+        routers_by_id:
+            router.default: 200
+            cmf_routing.dynamic_router: 100
+    dynamic:
+        persistence:
+            orm:
+                enabled: true
+        controllers_by_class:
+            Netgen\Layouts\Contentful\Entity\ContentfulEntry: 'netgen_layouts.contentful.controller.view'
+            Symfony\Cmf\Bundle\RoutingBundle\Doctrine\Orm\RedirectRoute: 'cmf_routing.redirect_controller:redirectAction'

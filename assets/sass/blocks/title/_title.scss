@@ -1,0 +1,13 @@
+.ngl-title {
+    .title {
+        font-size: 68px;
+        @extend %title-look;
+    }
+    @include media-breakpoint-down(md) {
+        .title {
+            font-size: 42px;
+        }   
+    }
+}
+
+@import 'section_title';

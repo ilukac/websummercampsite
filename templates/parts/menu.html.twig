@@ -1,0 +1,49 @@
+{% macro menuItem(item, main) %}
+    {% apply spaceless %}
+    {% if item.contentType.id == "menuitem" %}
+        {% if item.getsubMenu() is not empty %}
+            <li class="dropdown{% if main %} clearfix show{% endif %}">
+                <a class="dropdown-toggle" type="button" id="dropdownMenu{{ item.id|replace({'\|': ''}) }}" data-toggle="dropdown" aria-expanded="true">
+                    {{ item.name }}
+                    {% if not main %}<span class="caret"></span><div class="arrow-up"></div>{% endif %}
+                </a>
+                <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu{{ item.id|replace({'\|': ''}) }}">
+                    {% for subItem in item.getsubMenu() %}
+                        {% if subItem.contentType.id == "menuitem" %}
+                            <li{% if app.request.pathinfo == path('cmf_routing_object', {'_route_object': wscsite.object(subItem.getlink())}) %} class="active"{% endif %}>
+                                <a href="{{ path('cmf_routing_object', {'_route_object': wscsite.object(subItem.getlink())}) }}" >{{ subItem.name }}</a>
+                            </li>
+                        {% else %}
+                            <li{% if app.request.pathinfo == path('cmf_routing_object', {'_route_object': wscsite.object(subItem)}) %} class="active"{% endif %}>
+                                <a href="{{ path('cmf_routing_object', {'_route_object': wscsite.object(subItem)}) }}">{{ _self.itemTitle(subItem) }}</a>
+                            </li>
+                        {% endif %}
+                    {% endfor %}
+                </ul>
+            </li>
+        {% elseif item.getlink() is not null %}
+            <li{% if app.request.pathinfo == path('cmf_routing_object', {'_route_object': wscsite.object(item.getlink())}) %} class="active"{% endif %}>
+                <a href="{{ path('cmf_routing_object', {'_route_object': wscsite.object(item.getlink())}) }}">{{ item.name }}</a>
+            </li>
+        {% endif %}
+    {% else %}
+        <li{% if app.request.pathinfo == path('cmf_routing_object', {'_route_object': wscsite.object(item)}) %} class="active"{% endif %}>
+            <a href="{{ path('cmf_routing_object', {'_route_object': wscsite.object(item)}) }}">{{ _self.itemTitle(item) }}</a>
+        </li>
+    {% endif %}
+    {% endapply %}
+{% endmacro %}
+
+{% macro itemTitle(content) %}
+    {% apply spaceless %}
+        {% if content.getteaserTitle() is not null %}
+            {{ content.getteaserTitle() }}
+        {% elseif content.gettitle() is not null %}
+            {{ content.gettitle() }}
+        {% elseif content.getname() is not null %}
+            {{ content.getname() }}
+        {% else %}
+            {{ content.name }}
+        {% endif %}
+    {% endapply %}
+{% endmacro %}

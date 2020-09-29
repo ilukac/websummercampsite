@@ -1,0 +1,49 @@
+/.web-server-pid
+/app/config/parameters.yml
+/build/
+/phpunit.xml
+/var/*
+!/var/cache
+/var/cache/*
+!var/cache/.gitkeep
+!/var/logs
+/var/logs/*
+!var/logs/.gitkeep
+!/var/sessions
+/var/sessions/*
+!var/sessions/.gitkeep
+!var/SymfonyRequirements.php
+/vendor/
+/public/build-dev/
+node_modules/
+yarn-error.log
+npm-debug.log
+var/SymfonyRequirements.php
+DEPLOY_LOG.md
+.phpunit
+.phpunit.result.cache
+.idea/
+.DS_Store
+/.env.local
+/.env.local.php
+/.env.*.local
+/public/bundles/
+/vendor/
+.php_cs.cache
+
+###> symfony/framework-bundle ###
+/.env.local
+/.env.local.php
+/.env.*.local
+/config/secrets/prod/prod.decrypt.private.php
+/public/bundles/
+/src/.preload.php
+/var/
+/vendor/
+###< symfony/framework-bundle ###
+
+###> symfony/phpunit-bridge ###
+.phpunit
+.phpunit.result.cache
+/phpunit.xml
+###< symfony/phpunit-bridge ###

@@ -1,0 +1,35 @@
+/*
+ * Legal Disclaimer
+ *
+ * These Fonts are licensed only for use on these domains and their subdomains:
+ * netgen.io
+ *
+ * It is illegal to download or use them on other websites.
+ *
+ * While the @font-face statements below may be modified by the client, this
+ * disclaimer may not be removed.
+ *
+ * Lineto.com, 2019
+ */
+
+@font-face {
+  font-family: "CircularPro";
+  src: url("./assets/circular/lineto-circular-pro-black.eot");
+  src: url("./assets/circular/lineto-circular-pro-black.eot?#iefix") format("embedded-opentype"),
+       url("./assets/circular/lineto-circular-pro-black.woff2") format("woff2"),
+       url("./assets/circular/lineto-circular-pro-black.woff") format("woff");
+  font-weight: 900;
+  font-display: swap;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "CircularPro";
+  src: url("./assets/circular/lineto-circular-pro-book.eot");
+  src: url("./assets/circular/lineto-circular-pro-book.eot?#iefix") format("embedded-opentype"),
+       url("./assets/circular/lineto-circular-pro-book.woff2") format("woff2"),
+       url("./assets/circular/lineto-circular-pro-book.woff") format("woff");
+  font-weight: 300;
+  font-display: swap;
+  font-style: normal;
+}

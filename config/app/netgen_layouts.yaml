@@ -1,0 +1,77 @@
+block_definitions:
+    list:
+        view_types:
+            list:
+                item_view_types:
+                    overlay:
+                        name: 'Overlay'
+                    line:
+                        name: 'Line'
+                    hero:
+                        name: 'Hero'
+            grid:
+                item_view_types:
+                    griditem:
+                        name: 'Griditem'
+view:
+    item_view:
+        default:
+            contentful_entry\banner:
+                template: "content/standard/ng_banner.html.twig"
+                match:
+                    contentful\content_type: banner
+                    item\view_type: standard
+            contentful_entry\category:
+                template: "content/standard/ng_category.html.twig"
+                match:
+                    contentful\content_type: category
+                    item\view_type: standard
+            contentful_entry\news:
+                template: "content/standard/ng_news.html.twig"
+                match:
+                    contentful\content_type: news
+                    item\view_type: standard
+
+            contentful_entry\banner_overlay:
+                template: "content/overlay/ng_banner.html.twig"
+                match:
+                    contentful\content_type: banner
+                    item\view_type: overlay
+            contentful_entry\category_overlay:
+                template: "content/overlay/ng_category.html.twig"
+                match:
+                    contentful\content_type: category
+                    item\view_type: overlay
+            contentful_entry\news_overlay:
+                template: "content/overlay/ng_news.html.twig"
+                match:
+                    contentful\content_type: news
+                    item\view_type: overlay
+
+            contentful_entry\category_line:
+                template: "content/line/ng_category.html.twig"
+                match:
+                    contentful\content_type: category
+                    item\view_type: line
+            contentful_entry\news_line:
+                template: "content/line/ng_news.html.twig"
+                match:
+                    contentful\content_type: news
+                    item\view_type: line
+
+            contentful_entry\banner_hero:
+                template: "content/hero/ng_banner.html.twig"
+                match:
+                    contentful\content_type: banner
+                    item\view_type: hero
+
+            contentful_entry\banner_griditem:
+                template: "content/griditem/ng_banner.html.twig"
+                match:
+                    contentful\content_type: banner
+                    item\view_type: griditem
+            contentful_entry\speaker_griditem:
+                template: "content/griditem/speaker.html.twig"
+                match:
+                    contentful\content_type: speaker
+                    item\view_type: griditem

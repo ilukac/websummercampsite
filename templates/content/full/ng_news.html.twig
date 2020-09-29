@@ -1,0 +1,24 @@
+{% import 'parts/content_fields.html.twig' as content_fields %}
+
+<article class="view-type view-type-full ng-news vf1">
+
+    <h1 class="full-title">{{ content.gettitle() }}</h1>
+
+    <div class="datetime">{{ content_fields.date(content) }}</div>
+
+    {{ content_fields.picture(content_fields.url(content.getimage())|trim, "1062", "768", content.name)  }}
+
+    {% if content.getfullBody() is not null %}
+        <div class="full-body">
+            <div class="row">
+                <div class="col-sm-12 col-md-1 col-lg-1">
+                    {% include 'parts/social_buttons.html.twig' %}
+                </div>
+                <div class="col-sm-12 col-md-10 col-lg-10">
+                    {{ rich_text_render_collection(content.getfullBody().content) }}
+                </div>
+            </div>
+        </div>
+    {% endif %}
+</article>
+

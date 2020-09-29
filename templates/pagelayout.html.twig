@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    {% if site_name is not defined %}
+        {% set site_name = "Web Summer Camp 2021" %}
+    {% endif %}
+    {% block page_head %}
+        {% include 'page_head.html.twig' %}
+    {% endblock %}
+    {% block page_head_style %}
+        {% include 'page_head_style.html.twig' %}
+    {% endblock %}
+    {% block page_head_script %}
+        {% include 'page_head_script.html.twig' %}
+    {% endblock %}
+    {% block structuredData %}{% endblock %}
+</head>
+<body>
+
+<div id="page"{% if page_css_class|default is not empty %} class="{{ page_css_class }}"{% endif %}>
+    {% block layout %}
+        {% block header %}
+            {% include 'page_header.html.twig' %}
+        {% endblock %}
+
+        <div id="main" class="clearfix">
+            {% block content %}{% endblock %}
+        </div>
+
+        {% block sponsors %}
+            {% include 'parts/sponsors.html.twig' %}
+        {% endblock %}
+        {% block prefooter %}
+            {% include 'parts/prefooter.html.twig' %}
+        {% endblock %}
+        {% block footer %}
+            {% include 'page_footer.html.twig' %}
+        {% endblock %}
+    {% endblock %}
+</div>
+
+{% block page_footer_script %}
+    {% include 'page_footer_script.html.twig' %}
+{% endblock %}
+
+</body>
+</html>

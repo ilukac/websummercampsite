@@ -1,0 +1,13 @@
+{% extends nglayouts.layoutTemplate %}
+
+{% block content %}
+    {% if content.getContentType().id == "news" %}
+        {% include 'content/full/ng_news.html.twig' %}
+    {% endif %}
+{% endblock %}
+
+{% block structuredData %}
+    {% if content.getContentType().id == "news" %}
+        {% include 'content/structured_data/ng_news.html.twig' %}
+    {% endif %}
+{% endblock %}

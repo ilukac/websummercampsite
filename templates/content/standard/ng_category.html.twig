@@ -1,0 +1,28 @@
+{% import 'parts/content_fields.html.twig' as content_fields %}
+
+<article class="view-type view-type-{{ view_type }} {{ item.object.getContentType().id }} vl1">
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-10 col-lg-9">
+                <div class="wrapper">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            {% if app.request.pathinfo ==  path('cmf_routing_object', {'_route_object': item.object}) %}
+                                <h1 class="title">{{ content_fields.teaserTitle(item.object) }}</h1>
+                            {% else %}
+                                <h2 class="title"><a href="{{ path('cmf_routing_object', {'_route_object': item.object})|trim }}">{{ content_fields.teaserTitle(item.object) }}</a></h2>
+                            {% endif %}
+                        </div>
+                    </div>
+
+                    <div class="short">
+                        {{ content_fields.teaserIntro(item.object) }}
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+</article>

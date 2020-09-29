@@ -1,0 +1,95 @@
+/* standard item view type */
+.vl1 {
+    $font-size-1: 68px;
+    $font-size-1-sm: 48px;
+    $gap-size: 4rem;
+
+    margin: 0 0 2rem; 
+    padding-top: 75px;
+    padding-bottom: $gap*2;
+    .wrapper {
+        padding-left: 2em;
+        border-left: 1px solid $blue;
+        position: relative;
+        &:before {
+            content:"{";
+            color: $yellow;
+            font-size: $font-size-1;
+            font-weight: 900;
+            line-height: 1;
+            position: absolute;
+            top: -75px;
+            left: -15px;
+        }
+        .title {
+            font-size: $font-size-1;
+            line-height: 1;
+            margin-bottom: .25em;
+        }
+        .short {
+            color: $blue;
+            padding-left: 2rem;
+            margin-left: 1rem;
+            padding-top: .5rem;
+            border-left: 1px solid $blue;
+            position: relative;
+            font-size: $font-size-1;
+            p {
+                font-size: 18px;
+            }
+        }
+    }
+    &.with-background {
+        .short {
+            &:before, &:after  {
+                content: "";
+                background-color: $gray-light-2;
+                position: absolute;
+                left: -100vw;
+                width: 200vw;
+                z-index: -1;
+            }
+            &:before {
+                top: -1.25em;
+                height: 1.25em;
+            }
+            &:after {
+                top: 0;
+                height: calc(100% + #{$gap-size});
+            }
+        }
+    }
+    
+    @include media-breakpoint-down(md) {
+        .wrapper {
+            .title {
+                &:before {
+                    font-size: $font-size-1-sm;
+                }
+                font-size: $font-size-1-sm;
+            }
+            .short {
+                font-size: $font-size-1-sm;
+            }
+        }
+        .cta {
+            margin-top: $gap-size/4;
+        }
+        &.with-background {
+            .short {
+                &:after {
+                    height: calc(100% + #{$gap-size*1.5});
+                }
+            }
+        }
+    }
+    @include media-breakpoint-down(sm) {
+        padding-bottom: $gap/2;
+        .wrapper {
+            padding-left: 1em;
+            .short {
+                padding-left: 1.5rem;
+            }
+        }
+    }
+}

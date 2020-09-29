@@ -1,0 +1,51 @@
+{% import 'parts/menu.html.twig' as menu %}
+
+<header class="site-header">
+
+    <div class="container">
+
+        <a class="site-logo" href="/">
+            <img src="/images/websc-dark.svg" >
+        </a>
+        <a class="mainnav-toggle" href="#">
+            <img class="closed" src="/images/websc-menu-closed.svg" >
+            <img class="opened" src="/images/websc-menu-opened.svg" >
+        </a>
+
+        <nav class="alt-navigation" role="navigation">
+           <ul class="nav navbar-nav">
+               {% for item in wscsite.siteInfo.getaltMenu() %}
+                   {{ menu.menuItem(item, false) }}
+               {% endfor %}
+                <li class="lastli"><a class="btn btn-primary ticket-button" href="/call-for-papers">Call for papers</a></li>
+            </ul>
+        </nav>
+
+        <nav class="main-navigation" role="navigation">
+
+            <ul class="nav navbar-nav">
+                {% for item in wscsite.siteInfo.getmainMenu() %}
+                    {{ menu.menuItem(item, true) }}
+                {% endfor %}
+            </ul>
+
+            <div class="share-links">
+                <a href="https://twitter.com/WebSummerCamp">
+                    <i class="fab fa-twitter"></i>
+                </a>
+                <a href="https://www.facebook.com/WebSummerCamp/">
+                    <i class="fab fa-facebook-square"></i>
+                </a>
+                <a href="https://www.instagram.com/websummercamp">
+                    <i class="fab fa-instagram"></i>
+                </a>
+
+                <div class="mail-to">
+                    <a href="mailto:websummercamp@netgen.io">websummercamp@netgen.io</a>
+                </div>
+            </div>
+
+        </nav>
+
+    </div>
+</header>

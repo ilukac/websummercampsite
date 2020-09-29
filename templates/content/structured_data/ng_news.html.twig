@@ -1,0 +1,19 @@
+{% import 'parts/content_fields.html.twig' as content_fields %}
+
+<script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "NewsArticle",
+        "headline": "{{ content.gettitle() }}",
+        {% if content.getdate() is not null %}
+            "datePublished": "{{ content_fields.date(content) }}",
+        {% endif %}
+        {% if not content.getimage()  %}
+            "image": "{{ content.getimage().file.url ~ "?w=1062&h=768" }}",
+        {% endif %}
+        "publisher": {
+            "type": "Organization",
+            "name": "{{ site_name }}"
+        }
+    }
+</script>

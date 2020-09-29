@@ -1,0 +1,62 @@
+/* line item view type */
+.vl4 {
+    margin: 0 0 2rem;
+    display: flex;
+    align-items: flex-end;
+    position: relative;
+    padding-bottom: 30px;
+    border-bottom: 2px solid $gray-light-2;
+    margin-bottom: 40px;
+    color: $blue;
+    @at-root .list-item:last-child & { border-bottom: none; }
+    .image {
+        width: 44%;
+        a {
+            display: block;
+            position: relative;
+            height: 0;
+            padding-bottom: 56.25%;
+        }
+        img {
+            object-fit: cover;
+            object-position: center;
+            position: absolute;
+            width: 100%;
+            height: 100%;
+        }
+        + .article-content {
+            padding-left: $gap;
+        }
+    }
+    .article-content {
+        flex: 1;
+    }
+    .title {
+        font-size: 38px;
+        font-weight: 900;
+        margin: 0 0 .25rem;
+        a {
+        }
+    }
+    .date { font-weight: 900; }
+    .short {
+        margin-top: 15px;
+        p {
+            margin: 0;
+        }
+    }
+    .cta {
+        font-size: 14px; text-transform: uppercase; text-decoration: underline; font-weight: 900; margin-top: 15px;
+    }
+    @include media-breakpoint-down(xxs) {
+        display: block;
+        .image {
+            width: 100%;
+            + .article-content {
+                padding-left: 0;
+                padding-top: 1rem;
+            }
+        }
+    }
+}
+

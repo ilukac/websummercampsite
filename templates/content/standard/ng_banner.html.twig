@@ -1,0 +1,41 @@
+{% import 'parts/content_fields.html.twig' as content_fields %}
+
+{% set open_in_new_window = item.object.gettargetBlank() %}
+{% set link = content_fields.teaserLink(item.object)|trim %}
+
+<article class="view-type view-type-{{ view_type }} {{ item.object.getContentType().id }} vl1 with-background">
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-9 col-lg-7">
+                <div class="wrapper">
+                    <div class="row">
+                        <div class="col-9 col-sm-7">
+                            <h2 class="title">
+                                <a href="{{ link }}" {% if open_in_new_window %} target="_blank" rel="nofollow noopener noreferrer"{% endif %}>
+                                    {{ content_fields.teaserTitle(item.object) }}
+                                </a>
+                            </h2>
+                        </div>
+                    </div>
+
+                    <div class="short">
+                        {{ content_fields.teaserIntro(item.object) }}
+                    </div>
+                </div>
+
+            </div>
+            <div class="col-md-3 col-lg-5 d-md-flex align-items-md-end justify-content-md-end">
+
+                {# % if item.object.getctaLabel() is not null % #}
+                    <div class="cta">
+                        <a class="btn btn-primary" href="{{ link }}" {% if open_in_new_window %} target="_blank" rel="nofollow noopener noreferrer"{% endif %}>
+                            {{ item.object.getctaLabel() }}
+                        </a>
+                    </div>
+                {# % endif % #}
+            </div>
+        </div>
+    </div>
+
+</article>

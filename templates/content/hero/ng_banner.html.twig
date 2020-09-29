@@ -1,0 +1,39 @@
+{% import 'parts/content_fields.html.twig' as content_fields %}
+
+{% set open_in_new_window = item.object.gettargetBlank() %}
+{% set link = content_fields.teaserLink(item.object)|trim %}
+
+<article class="view-type view-type-{{ view_type }} {{ item.object.getContentType().id }} vl3">
+
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-9">
+                <div class="eyebrow">
+                    {{ content_fields.teaserEyebrow(item.object) }}
+                </div>
+                <h1 class="title">
+                    {{ content_fields.teaserIntro(item.object) }}
+                </h1>
+            </div>
+
+            <div class="col-lg-3 d-lg-flex align-items-lg-end justify-content-lg-end">
+
+                {% if item.object.getctaLabel() is not null %}
+                <a class="cta btn btn-primary" href="{{ link }}" {% if open_in_new_window %} target="_blank" rel="nofollow noopener noreferrer"{% endif %}>
+                    {{ item.object.getctaLabel() }}
+                </a>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+
+    <div class="container container-wide">
+        {% if item.object.getteaserVideo is not null  %}
+            {{ content_fields.player(item.object) }}
+        {% else %}
+            {{ content_fields.teaserImage(item.object, "1440", "752", link, open_in_new_window) }}
+        {% endif %}
+    </div>
+
+
+</article>

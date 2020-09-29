@@ -1,0 +1,18 @@
+{% set share_url = url('cmf_routing_object', {'_route_object': content})|url_encode %}
+{% set share_name = content.name|raw|url_encode %}
+
+<div class="social-buttons">
+
+    <a rel="nofollow" class="social-btn social-btn-facebook"
+        href="http://www.facebook.com/sharer.php?u={{ share_url }}&amp;t={{ share_name }}">
+        <i class="fab fa-facebook-f"></i>
+    </a>
+
+    <a rel="nofollow" class="social-btn social-btn-twitter" href="http://twitter.com/intent/tweet?url={{ share_url }}&text={{ share_name }}">
+        <i class="fab fa-twitter"></i>
+    </a>
+
+    <a rel="nofollow" class="social-btn social-btn-linkedin" href="https://www.linkedin.com/shareArticle?mini=true&url={{ share_url }}">
+        <i class="fab fa-linkedin"></i>
+    </a>
+</div>

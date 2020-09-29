@@ -1,0 +1,109 @@
+{% macro teaserImage(content, width, height, link_href, open_in_new_window) %}
+    {% if content.getteaserImage() is not null %}
+        <figure class="image">
+        {% if link_href is not null %}
+            <a href="{{ link_href|trim }}" aria-label="{{ content.getname() }}" {% if open_in_new_window %} target="_blank" rel="nofollow noopener noreferrer"{% endif %}>
+        {% endif %}
+        {{ _self.picture(_self.url(content.getteaserImage())|trim, width, height, content.name) }}
+        {% if link_href is not null %}
+            </a>
+        {% endif %}
+        </figure>
+    {% endif %}
+{% endmacro %}
+
+{% macro picture(image, width, height, alt, style) %}
+    {% set image_url = image|trim ~ "?w=" ~ width ~ "&h=" ~ height %}
+            <picture  class="{{ style }}" width="{{ width }}" height="{{ height }}" role="img" aria-label="{{ alt }}">
+                <source srcset="{{ image_url ~ "&fm=webp" }} 300w" type="image/webp" />
+                <source srcset="{{ image_url }} 300w" />
+                <img {% if lazy_loading %}data-src="{{ image_url }}"{% else %}src="{{ image_url }}"{% endif %} alt="{{ alt }}"/>
+            </picture>
+{% endmacro %}
+
+{% macro teaserLink(content) %}
+    {% apply spaceless %}
+        {% if content.getlink() is not null %}
+            {{ path('cmf_routing_object', {'_route_object': wscsite.object(content.getlink())}) }}
+        {% elseif content.geturl() is not null %}
+            {{ content.geturl() }}
+        {% endif %}
+    {% endapply %}
+{% endmacro %}
+
+{% macro teaserTitle(content) %}
+{% apply spaceless %}
+    {% if content.getteaserTitle() is not null %}
+        {{ content.getteaserTitle() }}
+    {% elseif content.gettitle() is not null %}
+        {{ content.gettitle() }}
+    {% elseif content.getname() is not null %}
+        {{ content.getname() }}
+    {% else %}
+        {{ content.name }}
+    {% endif %}
+{% endapply %}
+{% endmacro %}
+
+{% macro teaserIntro(content) %}
+    {% apply spaceless %}
+        {% if content.getteaserIntro() is not null %}
+            {{ rich_text_render_collection(content.getteaserIntro().content) }}
+        {% elseif content.getintro() is not null %}
+            {{ rich_text_render_collection(content.getintro().content) }}
+        {% endif %}
+    {% endapply %}
+{% endmacro %}
+
+{% macro teaserEyebrow(content) %}
+    {% apply spaceless %}
+        {% if content.getteaserEyebrow() is not null %}
+            {{ content.getteaserEyebrow() }}
+        {% elseif content.geteyebrow() is not null %}
+            {{ content.geteyebrow() }}
+        {% endif %}
+    {% endapply %}
+{% endmacro %}
+
+{% macro date(content) %}
+    {% apply spaceless %}
+        {% if content.getdate() is not null %}
+            <time class="date">
+                {{ content.getdate()|date('j M Y') }}
+            </time>
+        {% endif %}
+    {% endapply %}
+{% endmacro %}
+
+{% macro player(content) %}
+    {% apply spaceless %}
+    {% if content.getteaserVideo() is not null %}
+
+        <video id="video-multisource-{{ content.id|replace({'\|': ''})  }}" autoplay muted playsinline loop
+            data-desktop-poster="{{ _self.url(content.getteaserImage())|trim }}"
+            data-desktop-source="{{ _self.url(content.getteaserVideo())|trim }}"
+            data-desktop-source-type="{{ _self.contentType(content.getteaserVideo())|trim }}"
+            data-mobile-poster="{{ _self.url(content.getteaserImageMobile())|trim }}"
+            data-mobile-source="{{ _self.url(content.getteaserVideoMobile())|trim }}"
+            data-mobile-source-type="{{ _self.contentType(content.getteaserVideoMobile())|trim }}">
+        </video>
+
+    {% endif %}
+    {% endapply %}
+{% endmacro %}
+
+{% macro url(fileField) %}
+    {% if fileField.file is not null %}
+        {{ fileField.file.url  }}
+    {% elseif fileField.sys is not null %}
+        {{ wscsite.asset(fileField.sys.id).file.url  }}
+    {% endif %}
+{% endmacro %}
+
+{% macro contentType(fileField) %}
+    {% if fileField.file is not null %}
+        {{ fileField.file.contentType  }}
+    {% elseif fileField.sys is not null %}
+        {{ wscsite.asset(fileField.sys.id).file.contentType  }}
+    {% endif %}
+{% endmacro %}

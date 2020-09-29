@@ -1,0 +1,6 @@
+netgen_layouts_contentful:
+    resource: "@NetgenLayoutsContentfulBundle/Resources/config/routing.yml"
+
+netgen_layouts_enterprise:
+    resource: "@NetgenLayoutsEnterpriseBundle/Resources/config/routing.yml"
+    prefix: "%netgen_layouts.route_prefix%"

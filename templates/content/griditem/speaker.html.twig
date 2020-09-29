@@ -1,0 +1,42 @@
+{% import 'parts/content_fields.html.twig' as content_fields %}
+
+<article class="view-type view-type-{{ view_type }} {{ item.object.getContentType().id }}">
+
+    <div class="wrapper">
+        {% if item.object.getspeakerPhoto() is not null  %}
+            {% set image = item.object.getspeakerPhoto().file.url ~ "?h=360&w=360" %}
+            <div class="image">
+                <img src="{{ image }}" {% if lazy_loading %}data-src="{{ image }}"{% endif %}/>
+            </div>
+        {% endif %}
+
+        <header class="speaker-header">
+            <h2 class="name">{{ item.object.getspeakerName() }}</h2>
+        </header>
+
+        <div class="short">
+            {% if item.object.getcompany() is not null  %}
+                <h5 class="company">{{ item.object.getcompany() }}</h5>
+            {% endif %}
+            <p>{{ item.object.getspeakerBio() }}</p>
+            {% if item.object.gethistory() is not null  %}
+                <span class="history">{{ item.object.gethistory() }}</span>
+            {% endif %}
+        </div>
+
+        <div class="buttons">
+            {% if item.object.getspeakerTwitter() is not null  %}
+                <a class="btn-social" href="{{ item.object.getspeakerTwitter() }}" target="_blank"><i class="fab fa-twitter"></i></a>
+            {% endif %}
+            {% if item.object.getspeakerGitHub() is not null  %}
+                <a class="btn-social" href="{{ item.object.getspeakerGitHub() }}" target="_blank"><i class="fab fa-github"></i></a>
+            {% endif %}
+            {% if item.object.getspeakerLinkedIn() is not null  %}
+                <a class="btn-social" href="{{ item.object.getspeakerLinkedIn() }}" target="_blank"><i class="fab fa-linkedin"></i></a>
+            {% endif %}
+            {% if item.object.getspeakerBlog() is not null  %}
+                <a class="btn-social" href="{{ item.object.getspeakerBlog() }}" target="_blank"><i class="fa fa-bullhorn"></i></a>
+            {% endif %}
+        </div>
+    </div>
+</article>

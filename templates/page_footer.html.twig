@@ -1,0 +1,58 @@
+{% import 'parts/content_fields.html.twig' as content_fields %}
+
+<footer class="site-footer">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-6 col-lg-3 text-center">
+                <a class="site-logo" href="/">
+                    <img src="/images/websc-white.svg" {% if lazy_loading %}data-src="/images/websc-white.svg"{% endif %}>
+                </a>
+            </div>
+            <div class="col-sm-6 col-lg-3 text-center">
+                <div class="footer-social">
+                    <ul>
+                        <li><h4>Contact</h4></li>
+                        <li><a href="mailto:websummercamp@netgen.io" onclick="ga('send', 'event', {eventCategory: 'mail', eventAction: 'click', eventLabel: 'websummercamp@netgen.hr', transport: 'beacon'});">websummercamp@netgen.hr</a></li>
+                        <li><span class="footer-label">Hashtag</span><a href="https://twitter.com/search?q=%23websc&amp;src=typd" target="_blank" rel="noopener">#websc</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-sm-6 col-lg-3 text-center">
+                <div class="footer-menu">
+                    <ul>
+                        <li><h4>Sitemap</h4></li>
+                        {% for link in wscsite.siteInfo.getfooterSitemap() %}
+                            <li><a href="{{ path('cmf_routing_object', {'_route_object': wscsite.object(link)}) }}">{{ content_fields.teaserTitle(link) }}</a></li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+            <div class="col-sm-6 col-lg-3 text-center">
+                <div class="footer-menu">
+                    <ul>
+                        <li><h4>Timeline</h4></li>
+                        <li><a href="https://2019.websummercamp.com" target="_blank" rel="noopener">2019 edition</a></li>
+                        <li><a href="https://2018.websummercamp.com" target="_blank" rel="noopener">2018 edition</a></li>
+                        <li><span class="footer-label">... and other</span><a href="https://netgen.io/web-summer-camp" target="_blank" rel="noopener">Read more</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-6 col-lg-3 text-center">
+                 <a class="site-logo" href="https://netgen.io">
+                    <img src="/images/netgen-logo_white.svg" {% if lazy_loading %}data-src="/images/netgen-logo_white.svg"{% endif %}>
+                </a>
+            </div>
+            <div class="col-sm-6 col-lg-6 text-center">
+                <div class="footer-info">
+                    Web Summer Camp is a <a href="http://netgen.io" target="_blank" rel="noopener">Netgen</a> event.<br><br>
+                    Every year since 2012, we organize an event for professionals in the web community. We focus on practical learning and peer experience sharing — with a grain of fun.
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
